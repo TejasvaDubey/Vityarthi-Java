@@ -6,20 +6,21 @@
 
 Domain classes (edu.ccrm.domain)
 
-Represents real-world entities like Course, Student, Instructor, Semester, and Enrollment, including details such as grades and personal data.
+Code real-world objects such as Course, Student, Instructor, Semester, and Enrollment, including grades and personal information.
 
-Each class generally includes fields (properties) along with corresponding getter and setter methods.
+Each class typically has fields (properties) along with their respective getter and setter methods.
 
 Service classes (edu.ccrm.service)
 
-Provide the core logic for managing courses (CourseService) and students (StudentService).
+Implement the central logic for handling courses (CourseService) and students (StudentService).
 
-They work directly with the domain model objects.
+They interface directly with the domain model objects.
 
 Main.java
 
-Acts as the starting point of the application.
+Is the entry point of the application.
 
+Normally tasked with generating objects, invoking services, and executing the workflow like student enrollment and grading.
 Usually responsible for creating objects, calling services, and running the workflow such as student registration and grading.
 
 ## Evolution of Java
@@ -134,3 +135,70 @@ then
 ![alt_text](https://www.eclipse.org/downloads/packages/modules/custom/eclipsefdn/eclipsefdn_packages/images/installer-instructions-04.png)
 
 ![alt_text](https://www.eclipse.org/downloads/packages/modules/custom/eclipsefdn/eclipsefdn_packages/images/installer-instructions-05.png)
+
+## Syllabus Mapping
+
+1. Core Java Fundamentals
+This is the foundation of the entire project.
+
+Basic Syntax & Structure: The entire codebase demonstrates proper Java class structure, main method, and code blocks.
+
+Variables & Data Types: Extensive use of primitive types (int, double) and reference types (String).
+
+Control Flow Statements:
+
+Conditionals: if, else if, else statements for menu logic and input validation.
+
+Loops: while loops for the main menu to keep the program running until the user chooses to exit. for loops are used for iterating through ResultSet objects.
+
+Methods: The code is structured using static methods for different functionalities (e.g., addStudent(), viewStudents(), updateStudent()), promoting modularity and reusability.
+
+Input/Output (I/O): Uses Scanner class for taking user input from the console and System.out.println for displaying output.
+
+Exception Handling: Uses a basic try-catch block to handle SQLException, which is crucial for robust database interaction.
+
+2. Object-Oriented Programming (OOP) Principles
+While the current structure is largely procedural (focused on static methods), the domain is inherently object-oriented.
+
+Classes and Objects: The system revolves around the concept of a Student object, even if it's not explicitly defined as a class in the main code. The database table students represents the blueprint of a Student class.
+
+Practical Application (Potential Enhancement): A natural progression for this project would be to create a Student class with attributes like id, name, grade, etc., and then use objects to pass data around, which would be a direct application of OOP.
+
+3. Database Programming (JDBC - Java Database Connectivity)
+This is the most significant and advanced topic covered in the project.
+
+JDBC Architecture: The project uses the standard JDBC workflow:
+
+Load and Register Driver: Class.forName("com.mysql.cj.jdbc.Driver").
+
+Establish Connection: DriverManager.getConnection(url, username, password).
+
+Create Statement: connection.createStatement().
+
+Execute Queries:
+
+CREATE: stmt.executeUpdate(CREATE_TABLE_SQL) (in the setup script).
+
+INSERT (Create): stmt.executeUpdate(query) in addStudent().
+
+SELECT (Read): stmt.executeQuery(query) in viewStudents().
+
+UPDATE (Update): stmt.executeUpdate(query) in updateStudent().
+
+DELETE (Delete): stmt.executeUpdate(query) in deleteStudent().
+
+Process ResultSet: Iterating through the ResultSet to display student data.
+
+Close Connection: connection.close() (ideally in a finally block or using try-with-resources for better practice).
+
+SQL (Structured Query Language): The project demonstrates practical use of fundamental SQL commands (INSERT, SELECT, UPDATE, DELETE) embedded within Java strings.
+
+4. Software Engineering & Design Practices
+The project demonstrates several important practical development skills.
+
+CRUD Operations: Implements the four basic functions of persistent storage: Create, Read, Update, Delete. This is a fundamental pattern in software development.
+
+Application Structure: Organizes code logically into a main driver class (Vityarthi.java) with separate methods for distinct functionalities.
+
+Use of External Libraries: Manages dependencies using Maven (evident from the pom.xml file), specifically the mysql-connector-j dependency to connect to the MySQL database.
+
