@@ -1,6 +1,6 @@
 # Campus Course & Records Manager (CCRM)
 
-## Java Dvelopment Kit 24 
+## Open JDK Version 17
 
 ## Project Overview
 
